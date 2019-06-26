@@ -10,4 +10,11 @@ describe('Thermostat', function() {
     expect(thermostat.temperature).toEqual(20)
   })
 
+  describe('up', function() {
+    it('raise the temperature by a desired valiue', function() {
+      thermostat.up(5)
+      expect(thermostat.temperature).toEqual(25)
+    })
+  })
+
 })
