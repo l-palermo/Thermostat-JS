@@ -36,11 +36,14 @@ describe('Thermostat', function() {
 
   describe('power saving', function() {
     it('returns true when active', function() {
-      expect(thermostat.powerSaving()).toEqual(true)
+      expect(thermostat.powerSaving()).toEqual('OFF')
     })
     it('returns false when not active', function() {
       thermostat.powerSaving()
-      expect(thermostat.powerSaving()).toEqual(false)
+      expect(thermostat.powerSaving()).toEqual('ON')
+    })
+    it('is on by default', function() {
+      expect(thermostat._powerSaving).toEqual('ON')
     })
   })
 

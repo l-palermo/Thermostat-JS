@@ -1,13 +1,13 @@
 function Thermostat() {
   this.temperature = 20
-  this._powerSaving = false
+  this._powerSaving = 'ON'
 }
 
 Thermostat.prototype.up = function(value) {
   this.temperature += value
-  if(this._powerSaving == true && this.temperature > 25) {
+  if(this._powerSaving == 'OFF' && this.temperature > 32) {
     throw Error('Temperature Limit') 
-  } else if(this.temperature > 32) { throw Error('Temperature Limit') }
+  } else if(this.temperature > 25) { throw Error('Temperature Limit') }
   return this.temperature
 }
 
@@ -18,6 +18,6 @@ Thermostat.prototype.down = function(value) {
 } 
 
 Thermostat.prototype.powerSaving = function() {
-  if(this._powerSaving == false) { return this._powerSaving = true }
-  else if(this._powerSaving == true) { return this._powerSaving = false }
+  if(this._powerSaving == 'OFF') { return this._powerSaving = 'ON' }
+  else if(this._powerSaving == 'ON') { return this._powerSaving = 'OFF' }
 }

@@ -45,4 +45,11 @@ describe('Thermostat', function() {
     expect(function() { thermostat.up(13) } ).toThrow( Error('Temperature Limit'))
   })
 
+  // Power saving mode is on by default
+  
+  it('is on by default', function() {
+    expect(thermostat._powerSaving).toEqual('ON')
+  })
+
+  
 })
