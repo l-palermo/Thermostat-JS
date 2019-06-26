@@ -18,5 +18,12 @@ describe('Thermostat', function() {
     thermostat.up(5)
     expect(thermostat.temperature).toEqual(25)
   })
-  
+
+   // You can decrease the temperature with a down function
+
+   it('lower the temperature by a desired value', function() {
+    thermostat.down(5)
+    expect(thermostat.temperature).toEqual(15)
+  })
+
 })
