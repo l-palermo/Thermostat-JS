@@ -26,4 +26,10 @@ describe('Thermostat', function() {
     expect(thermostat.temperature).toEqual(15)
   })
 
+  // The minimum temperature is 10 degrees
+
+  it('raise an error if the temperature goes lower than 10', function() {
+    expect(function() { thermostat.down(11) }).toThrow( Error('Temperature Limit'))
+  })
+
 })

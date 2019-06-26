@@ -22,5 +22,8 @@ describe('Thermostat', function() {
       thermostat.down(5)
       expect(thermostat.temperature).toEqual(15)
     })
+    it('raise an error if the temperature goes lower than 10', function() {
+      expect(function() { thermostat.down(11) }).toThrow( Error('Temperature Limit'))
+    })
   })
 })

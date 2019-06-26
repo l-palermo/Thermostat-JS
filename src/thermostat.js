@@ -9,5 +9,7 @@ Thermostat.prototype.up = function(value) {
 
 Thermostat.prototype.down = function(value) {
   this.temperature -= value
+  if(this.temperature < 10) { throw Error('Temperature Limit') }
   return this.temperature 
 } 
+
