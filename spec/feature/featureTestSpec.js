@@ -51,5 +51,12 @@ describe('Thermostat', function() {
     expect(thermostat._powerSaving).toEqual('ON')
   })
 
-  
+  // You can reset the temperature to 20 with a reset function
+
+  it('reset the temperature to 20', function() {
+    thermostat.up(5)
+    thermostat.reset()
+    expect(thermostat.temperature).toEqual(20)
+  })
+
 })

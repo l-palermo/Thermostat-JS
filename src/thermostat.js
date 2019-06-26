@@ -21,3 +21,7 @@ Thermostat.prototype.powerSaving = function() {
   if(this._powerSaving == 'OFF') { return this._powerSaving = 'ON' }
   else if(this._powerSaving == 'ON') { return this._powerSaving = 'OFF' }
 }
+
+Thermostat.prototype.reset = function() {
+  return this.temperature = 20
+}
