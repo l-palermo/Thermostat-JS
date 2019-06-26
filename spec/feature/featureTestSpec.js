@@ -35,13 +35,13 @@ describe('Thermostat', function() {
   // If power saving mode is on, the maximum temperature is 25 degrees
 
   it('raise an error if temperature goes over 25 and pS is on', function() {
-    thermostat.powerSaving()
     expect(function() { thermostat.up(10) } ).toThrow( Error('Temperature Limit'))
   })
 
   // If power saving mode is off, the maximum temperature is 32 degrees
 
   it('raise an error if temperature goes over 32 and pS is off', function() {
+    thermostat.powerSaving()
     expect(function() { thermostat.up(13) } ).toThrow( Error('Temperature Limit'))
   })
 
@@ -57,6 +57,20 @@ describe('Thermostat', function() {
     thermostat.up(5)
     thermostat.reset()
     expect(thermostat.temperature).toEqual(20)
+  })
+
+  // You can ask about the thermostat's current energy usage: < 18 is low-usage, < 25 is medium-usage, anything else is high-usage.
+
+  it('return low-usage if temp < 18, medium-usage if temp < 25, high-usage if > 25', function() {
+    thermostat.down(3)
+    expect(thermostat.energyUsage()).toEqual('low-usage')
+
+    thermostat.up(4)
+    expect(thermostat.energyUsage()).toEqual('medium-usage')
+
+    thermostat.powerSaving()
+    thermostat.up(5)
+    expect(thermostat.energyUsage()).toEqual('high-usage')
   })
 
 })

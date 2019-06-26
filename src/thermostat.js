@@ -7,7 +7,8 @@ Thermostat.prototype.up = function(value) {
   this.temperature += value
   if(this._powerSaving == 'OFF' && this.temperature > 32) {
     throw Error('Temperature Limit') 
-  } else if(this.temperature > 25) { throw Error('Temperature Limit') }
+  } else if(this._powerSaving == 'ON' && this.temperature > 25) { 
+    throw Error('Temperature Limit') }
   return this.temperature
 }
 
@@ -24,4 +25,10 @@ Thermostat.prototype.powerSaving = function() {
 
 Thermostat.prototype.reset = function() {
   return this.temperature = 20
+}
+
+Thermostat.prototype.energyUsage = function() {
+  if(this.temperature < 18) { return 'low-usage' }
+  else if(this.temperature < 25) { return 'medium-usage' }
+  else if(this.temperature > 25) { return 'high-usage' }
 }
