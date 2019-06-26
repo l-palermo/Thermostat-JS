@@ -15,6 +15,10 @@ describe('Thermostat', function() {
       thermostat.up(5)
       expect(thermostat.temperature).toEqual(25)
     })
+    it('raise an error if temperature goes over 25 and pS is on', function() {
+      thermostat.powerSaving()
+      expect(function() { thermostat.up(10) } ).toThrow( Error('Temperature Limit'))
+    })
   })
 
   describe('down', function() {
@@ -26,4 +30,15 @@ describe('Thermostat', function() {
       expect(function() { thermostat.down(11) }).toThrow( Error('Temperature Limit'))
     })
   })
+
+  describe('power saving', function() {
+    it('returns true when active', function() {
+      expect(thermostat.powerSaving()).toEqual(true)
+    })
+    it('returns false when not active', function() {
+      thermostat.powerSaving()
+      expect(thermostat.powerSaving()).toEqual(false)
+    })
+  })
+
 })
