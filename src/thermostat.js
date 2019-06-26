@@ -7,7 +7,7 @@ Thermostat.prototype.up = function(value) {
   this.temperature += value
   if(this._powerSaving == true && this.temperature > 25) {
     throw Error('Temperature Limit') 
-  }
+  } else if(this.temperature > 32) { throw Error('Temperature Limit') }
   return this.temperature
 }
 

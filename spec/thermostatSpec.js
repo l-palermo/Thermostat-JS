@@ -19,6 +19,9 @@ describe('Thermostat', function() {
       thermostat.powerSaving()
       expect(function() { thermostat.up(10) } ).toThrow( Error('Temperature Limit'))
     })
+    it('raise an error if temperature goes over 32 and pS is off', function() {
+      expect(function() { thermostat.up(13) } ).toThrow( Error('Temperature Limit'))
+    })
   })
 
   describe('down', function() {

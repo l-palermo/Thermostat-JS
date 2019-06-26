@@ -39,4 +39,10 @@ describe('Thermostat', function() {
     expect(function() { thermostat.up(10) } ).toThrow( Error('Temperature Limit'))
   })
 
+  // If power saving mode is off, the maximum temperature is 32 degrees
+
+  it('raise an error if temperature goes over 32 and pS is off', function() {
+    expect(function() { thermostat.up(13) } ).toThrow( Error('Temperature Limit'))
+  })
+
 })
