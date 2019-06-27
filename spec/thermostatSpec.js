@@ -1,3 +1,5 @@
+'use strict';
+
 describe('Thermostat', function() {
 
   var thermostat;
@@ -11,41 +13,57 @@ describe('Thermostat', function() {
   })
 
   describe('up', function() {
-    it('raise the temperature by a desired valiue', function() {
-      thermostat.up(5)
+    it('raise the temperature by 1', function() {
+      for (var i = 0; i < 5; i++) { 
+        thermostat.up();
+       }
       expect(thermostat.temperature).toEqual(25)
-    })
-    it('raise an error if temperature goes over 25 and pS is on', function() {
-      expect(function() { thermostat.up(10) } ).toThrow( Error('Temperature Limit'))
-    })
-    it('raise an error if temperature goes over 32 and pS is off', function() {
-      thermostat.powerSaving()
-      expect(function() { thermostat.up(13) } ).toThrow( Error('Temperature Limit'))
     })
   })
 
   describe('down', function() {
     it('lower the temperature by a desired value', function() {
-      thermostat.down(5)
+      for (var i = 0; i < 5; i++) { 
+        thermostat.down()
+      }
       expect(thermostat.temperature).toEqual(15)
-    })
-    it('raise an error if the temperature goes lower than 10', function() {
-      expect(function() { thermostat.down(11) }).toThrow( Error('Temperature Limit'))
     })
   })
 
   describe('power saving', function() {
     it('returns true when active', function() {
-      expect(thermostat.powerSaving()).toEqual('OFF')
+      thermostat.powerSavingOff()
+      thermostat.powerSavingOn()
+      expect(thermostat._powerSaving).toEqual(true)
     })
     it('returns false when not active', function() {
-      thermostat.powerSaving()
-      expect(thermostat.powerSaving()).toEqual('ON')
+      thermostat.powerSavingOff()
+      expect(thermostat._powerSaving).toEqual(false)
     })
     it('is on by default', function() {
-      expect(thermostat._powerSaving).toEqual('ON')
+      expect(thermostat._powerSaving).toEqual(true)
     })
   })
+
+  describe('when power saving mode is off', function() {
+    it('has a maximum temperature of 32 degrees', function() {
+      thermostat.powerSavingOff();
+      for (var i = 0; i < 13; i++) {
+        thermostat.up();
+       }
+      expect(thermostat.getCurrentTemperature()).toEqual(32);
+    });
+  });
+
+  describe('when power saving mode is off', function() {
+    it('has a maximum temperature of 32 degrees', function() {
+      thermostat.powerSavingOn();
+      for (var i = 0; i < 6; i++) {
+        thermostat.up();
+       }
+      expect(thermostat.getCurrentTemperature()).toEqual(25);
+    });
+  });
 
   describe('reset', function() {
     it('reset the temperature to 20', function() {
@@ -57,14 +75,20 @@ describe('Thermostat', function() {
 
   describe('energy usage', function() {
     it('return low-usage if temp < 18, medium-usage if temp < 25, high-usage if > 25', function() {
-      thermostat.down(3)
+      for( var i = 0; i < 3; i++) {
+        thermostat.down()
+      }
       expect(thermostat.energyUsage()).toEqual('low-usage')
   
-      thermostat.up(4)
+      for(var i = 0; i < 5; i++) {
+        thermostat.up()
+      }
       expect(thermostat.energyUsage()).toEqual('medium-usage')
   
-      thermostat.powerSaving()
-      thermostat.up(5)
+      thermostat.powerSavingOff()
+      for(var i = 0; i < 5; i++) {
+        thermostat.up()
+      }
       expect(thermostat.energyUsage()).toEqual('high-usage')
     })
   })
