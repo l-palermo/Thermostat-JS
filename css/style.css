@@ -1,0 +1,32 @@
+.low-usage {
+  color: green;
+}
+
+.medium-usage {
+  color: black
+}
+
+.high-usage {
+  color: red
+}
+
+h1 {
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 150px
+}
+
+button {
+  background-color: rgb(211, 211, 211);
+  width: 19%;
+  color: white;
+  padding: 200px 5px;
+  text-align: center;
+  font-size: 25px;
+  -webkit-transition-duration: 0.4s;
+  transition-duration: 0.4s;
+  border: none;
+  }
+  
+button:hover {
+  background-color: rgba(40, 37, 216, 0.568);
+  }

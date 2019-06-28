@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title> Thermostat </title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/style.css">.
+  </head>
+  <body>
+    <section align='center'>
+
+      <h3 align='left'> 
+        <span id='city'> London </span> - External temperature: <span id='ext_temp'> 20 </span> 
+      </h3>
+
+      <select id='current_city'>
+        <option value='london,'> London </option>
+        <option value='manchester,'> Manchester </option>
+        <option value='brighton,'> Brighton </option>
+        <option value='liverpool,'> Liverpool </option>
+        <option value='glasgow,'> Glasgow </option>
+      </select>
+
+      <h1 id='temperature'></h1>
+      Power saving mode is: <span id="power-saving"> on </span>
+      <p>
+        <button id='temp_down'> - </button>
+        <button id='temp_up'> + </button>
+        <button id='psm_on'> PSM ON </button>
+        <button id='psm_off'> PSM OFF </button>
+        <button id='reset'> Reset </button>
+      </p>
+    </section>
+    <script src="src/thermostat.js"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="js/interface.js"></script>
+  </body>
+</html>

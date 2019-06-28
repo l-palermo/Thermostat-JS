@@ -3,7 +3,7 @@
 function Thermostat() {
   this.temperature = 20;
   this._powerSaving = true;
-  this.MINIMUM_TEMPERATURE;
+  this.MINIMUM_TEMPERATURE = 10;
   this.MAX_LIMIT_PSM_ON = 25;
   this.MAX_LIMIT_PSM_OFF = 32;
 }
@@ -42,11 +42,11 @@ Thermostat.prototype.isMaximumTemperature = function() {
 }
 
 Thermostat.prototype.powerSavingOn = function() {
-  this._powerSaving = true;
+  this._powerSaving = true
 }
 
 Thermostat.prototype.powerSavingOff = function() {
-  this._powerSaving = false;
+  this._powerSaving = false
 }
 
 Thermostat.prototype.reset = function() {
@@ -55,6 +55,6 @@ Thermostat.prototype.reset = function() {
 
 Thermostat.prototype.energyUsage = function() {
   if(this.temperature < 18) { return 'low-usage' }
-  else if(this.temperature < 25) { return 'medium-usage' }
+  else if(this.temperature <= 25) { return 'medium-usage' }
   else if(this.temperature > 25) { return 'high-usage' }
 }
