@@ -11,16 +11,17 @@ $( document ).ready(function() {
   $('#temp_up').click(function() {
       thermostat.up();
       updateTemperature();
+      $.get('/thermostat', function(response) {
+        response
+      })
+      $.post('/thermostat', { temp_up: thermostat.temperature })
   });
   $('#psm_on').click(function() {
-    thermostat.powerSavingOn()
-    $('#power-saving').text('on')
-    updateTemperature();
+    thermostat.powerSavingOn();
+    $('#power-saving').text('on');
   });
   $('#psm_off').click(function() {
     thermostat.powerSavingOff()
-    $('#power-saving').text('off')
-    updateTemperature();
   });
   $('#reset').click(function() {
     thermostat.reset()
@@ -36,7 +37,6 @@ $( document ).ready(function() {
     var URL = "http://api.openweathermap.org/data/2.5/weather?q="
     var token = "uk&appid=2db88ea2cb9a42dea897cb8697d67f0f"
     var units = "&units=metric"
-    city = "london"
   $.get(URL + city + token + units, function(data) {
     $('#ext_temp').text(data.main.temp);
     $('#city').text(data.name);

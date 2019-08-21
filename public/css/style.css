@@ -1,3 +1,7 @@
+main {
+  max-width: 600px;
+}
+
 .low-usage {
   color: green;
 }
